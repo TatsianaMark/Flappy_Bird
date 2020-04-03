@@ -19,7 +19,7 @@ let gap = 90;
 document.addEventListener("keydown",moveUp);
 
 function moveUp(){
-    yPos -= 20;
+    yPos -= 25;
 }
 //Create block
 let pipe = [];
@@ -32,7 +32,7 @@ pipe[0] ={
 //Position of bird
 let xPos = 10;
 let yPos = 150;
-let grav = 1;
+let grav = 1.5;
 
 function draw() {
     ctx.drawImage(bg,0,0);
@@ -48,6 +48,13 @@ function draw() {
                x : cvs.width,
                y : Math.floor(Math.random()*pipeUp.height) - pipeUp.height
             });
+        }
+
+        if(xPos + bird.width >= pipe[i].x
+        && xPos <= pipe[i].x + pipeUp.width
+            &&( yPos <= pipe[i].y + pipeUp.height
+            || yPos + bird.height >= pipe[i].y + pipeUp.height +gap)){
+            location.reload();
         }
     }
 
